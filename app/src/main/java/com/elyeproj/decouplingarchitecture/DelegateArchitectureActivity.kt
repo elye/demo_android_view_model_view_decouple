@@ -8,50 +8,45 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_architecture.*
 
-class NoArchitectureActivity : AppCompatActivity() {
+class DelegateArchitectureActivity : AppCompatActivity(), DelegateView {
+
+    private var viewModel: DelegateViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_architecture)
-        container.setBackgroundColor(ContextCompat.getColor(this, R.color.colorCyan))
+        container.setBackgroundColor(ContextCompat.getColor(this, R.color.colorYellow))
+
+        viewModel = DelegateViewModel(this)
 
         btn_save.setOnClickListener { save() }
         btn_clear.setOnClickListener { clear() }
         setupInitialView()
-
     }
 
     private fun save() {
-        if (edit_text.text.isNotEmpty()) {
-            enterViewModel(edit_text.text.toString())
-        }
+        viewModel?.save(edit_text.text.toString())
     }
 
     private fun clear() {
-        enterEditMode()
+        viewModel?.clear()
     }
 
     private fun setupInitialView() {
-        if (MainActivity.persistedText.isNotEmpty()) {
-            enterViewModel(MainActivity.persistedText)
-        } else {
-            enterEditMode()
-        }
+        viewModel?.initialSetup()
     }
 
-    private fun enterViewModel(text: String) {
+    override fun enterViewModel(text: String) {
         hideKeyboard()
         text_view.text = text
-        MainActivity.persistedText = text
         btn_clear.visibility = View.VISIBLE
         text_view.visibility = View.VISIBLE
         btn_save.visibility = View.GONE
         edit_text.visibility = View.GONE
     }
 
-    private fun enterEditMode() {
+    override fun enterEditMode() {
         edit_text.setText(String())
-        MainActivity.persistedText = String()
         btn_clear.visibility = View.GONE
         text_view.visibility = View.GONE
         btn_save.visibility = View.VISIBLE

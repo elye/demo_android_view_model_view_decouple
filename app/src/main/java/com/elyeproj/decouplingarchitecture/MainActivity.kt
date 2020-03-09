@@ -19,7 +19,14 @@ class MainActivity : AppCompatActivity() {
         btn_no_architecture.run {
             setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.colorCyan))
             setOnClickListener {
-                startActivity(Intent(this@MainActivity, NoArchitectureActivity::class.java))
+                startActivity(Intent(this@MainActivity, BasicArchitectureActivity::class.java))
+            }
+        }
+
+        btn_delegate_architecture.run {
+            setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.colorYellow))
+            setOnClickListener {
+                startActivity(Intent(this@MainActivity, DelegateArchitectureActivity::class.java))
             }
         }
     }

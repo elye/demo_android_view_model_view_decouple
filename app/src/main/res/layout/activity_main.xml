@@ -8,12 +8,68 @@
 
     <Button
         android:id="@+id/btn_no_architecture"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="No Architecture"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/colorRed"
+        app:layout_constraintBottom_toTopOf="@id/btn_delegate_architecture"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_delegate_architecture"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Delegate Architecture"
+        android:textColor="@color/colorRed"
+        app:layout_constraintBottom_toTopOf="@id/btn_functional_architecture"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_no_architecture" />
+
+    <Button
+        android:id="@+id/btn_functional_architecture"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Functional Architecture"
+        android:textColor="@color/colorRed"
+        app:layout_constraintBottom_toTopOf="@id/btn_notification_architecture"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_delegate_architecture" />
+
+    <Button
+        android:id="@+id/btn_notification_architecture"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Notification Architecture"
+        android:textColor="@color/colorRed"
+        app:layout_constraintBottom_toTopOf="@id/btn_reactive_architecture"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_functional_architecture" />
+
+    <Button
+        android:id="@+id/btn_reactive_architecture"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Reactive Architecture"
+        android:textColor="@color/colorRed"
+        app:layout_constraintBottom_toTopOf="@id/btn_fullreactive_architecture"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_notification_architecture" />
+
+    <Button
+        android:id="@+id/btn_fullreactive_architecture"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Full Reactive Architecture"
+        android:textColor="@color/colorRed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_reactive_architecture" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
