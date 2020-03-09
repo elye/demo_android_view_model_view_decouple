@@ -59,5 +59,12 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, ReactiveArchitectureActivity::class.java))
             }
         }
+
+        btn_fullreactive_architecture.run {
+            setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.colorGreen))
+            setOnClickListener {
+                startActivity(Intent(this@MainActivity, UltimateReactiveArchitectureActivity::class.java))
+            }
+        }
     }
 }

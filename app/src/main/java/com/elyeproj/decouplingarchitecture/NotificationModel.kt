@@ -3,7 +3,6 @@ package com.elyeproj.decouplingarchitecture
 import android.content.Intent
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
-
 class NotificationModel private constructor() {
     companion object {
         const val textSetNotification = "textSetNotification"
