@@ -12,15 +12,18 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         var persistedText: String = String()
-        var globalContext: Context? = null
+        lateinit var globalContext: Context
+
+        fun isGlobalContextInitialized() = ::globalContext.isInitialized
     }
 
-    lateinit var testing: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        globalContext = this.baseContext
+        if (!isGlobalContextInitialized()) {
+            globalContext = this.baseContext
+        }
 
         btn_no_architecture.run {
             setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.colorCyan))
@@ -47,6 +50,13 @@ class MainActivity : AppCompatActivity() {
             setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.colorPurple))
             setOnClickListener {
                 startActivity(Intent(this@MainActivity, NotificationArchitectureActivity::class.java))
+            }
+        }
+
+        btn_reactive_architecture.run {
+            setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.colorOrange))
+            setOnClickListener {
+                startActivity(Intent(this@MainActivity, ReactiveArchitectureActivity::class.java))
             }
         }
     }

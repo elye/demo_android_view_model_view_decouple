@@ -13,6 +13,7 @@
         <activity android:name=".DelegateArchitectureActivity"></activity>
         <activity android:name=".FunctionalArchitectureActivity"></activity>
         <activity android:name=".NotificationArchitectureActivity"></activity>
+        <activity android:name=".ReactiveArchitectureActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

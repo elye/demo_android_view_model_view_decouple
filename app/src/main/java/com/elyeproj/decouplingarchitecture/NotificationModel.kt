@@ -15,11 +15,7 @@ class NotificationModel private constructor() {
         set(value) {
             field = value
             MainActivity.persistedText = value ?: String()
-            val intent = Intent(textSetNotification)
-            // You can also include some extra data.
-            intent.putExtra(textKey, value)
-            MainActivity.globalContext?.let {
-                LocalBroadcastManager.getInstance(it).sendBroadcast(intent)
-            }
+            val intent = Intent(textSetNotification).apply { putExtra(textKey, value) }
+            LocalBroadcastManager.getInstance(MainActivity.globalContext).sendBroadcast(intent)
         }
 }
