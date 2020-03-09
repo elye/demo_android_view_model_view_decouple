@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".BasicArchitectureActivity"></activity>
         <activity android:name=".DelegateArchitectureActivity"></activity>
+        <activity android:name=".FunctionalArchitectureActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,6 +1,6 @@
 package com.elyeproj.decouplingarchitecture
 
 interface DelegateView {
-    fun enterViewModel(text: String)
+    fun enterViewMode(text: String)
     fun enterEditMode()
 }

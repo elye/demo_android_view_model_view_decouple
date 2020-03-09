@@ -1,23 +1,21 @@
 package com.elyeproj.decouplingarchitecture
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_architecture.*
 
-class DelegateArchitectureActivity : AppCompatActivity(), DelegateView {
+class FunctionalArchitectureActivity : AppCompatActivity() {
 
-    private var viewModel: DelegateViewModel? = null
+    private var viewModel: FunctionalViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_architecture)
-        container.setBackgroundColor(ContextCompat.getColor(this, R.color.colorYellow))
+        container.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLightGray))
 
-        viewModel = DelegateViewModel(this)
+        viewModel = FunctionalViewModel()
 
         btn_save.setOnClickListener { save() }
         btn_clear.setOnClickListener { clear() }
@@ -25,18 +23,18 @@ class DelegateArchitectureActivity : AppCompatActivity(), DelegateView {
     }
 
     private fun save() {
-        viewModel?.save(edit_text.text.toString())
+        viewModel?.save(edit_text.text.toString(), ::enterViewMode)
     }
 
     private fun clear() {
-        viewModel?.clear()
+        viewModel?.clear(::enterEditMode)
     }
 
     private fun setupInitialView() {
-        viewModel?.initialSetup()
+        viewModel?.initialSetup(::enterEditMode, ::enterViewMode)
     }
 
-    override fun enterViewMode(text: String) {
+    private fun enterViewMode(text: String) {
         hideKeyboard()
         text_view.text = text
         btn_clear.visibility = View.VISIBLE
@@ -45,7 +43,7 @@ class DelegateArchitectureActivity : AppCompatActivity(), DelegateView {
         edit_text.visibility = View.GONE
     }
 
-    override fun enterEditMode() {
+    private fun enterEditMode() {
         edit_text.setText(String())
         btn_clear.visibility = View.GONE
         text_view.visibility = View.GONE

@@ -56,12 +56,4 @@ class BasicArchitectureActivity : AppCompatActivity() {
         btn_save.visibility = View.VISIBLE
         edit_text.visibility = View.VISIBLE
     }
-
-    fun hideKeyboard() {
-        currentFocus?.let {
-            val inputManager: InputMethodManager =
-                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputManager.hideSoftInputFromWindow(it.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-        }
-    }
 }

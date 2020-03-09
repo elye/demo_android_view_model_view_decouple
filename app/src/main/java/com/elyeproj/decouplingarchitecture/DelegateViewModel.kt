@@ -6,14 +6,14 @@ class DelegateViewModel(private val delegate: DelegateView) {
         if (MainActivity.persistedText.isEmpty()) {
             delegate.enterEditMode()
         } else {
-            delegate.enterViewModel(MainActivity.persistedText)
+            delegate.enterViewMode(MainActivity.persistedText)
         }
     }
 
     fun save(text: String) {
         if (text.isEmpty()) return
         MainActivity.persistedText = text
-        delegate.enterViewModel(text)
+        delegate.enterViewMode(text)
     }
 
     fun clear() {

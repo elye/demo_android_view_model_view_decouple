@@ -29,5 +29,12 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, DelegateArchitectureActivity::class.java))
             }
         }
+
+        btn_functional_architecture.run {
+            setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.colorLightGray))
+            setOnClickListener {
+                startActivity(Intent(this@MainActivity, FunctionalArchitectureActivity::class.java))
+            }
+        }
     }
 }
