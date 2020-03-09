@@ -24,17 +24,14 @@ class UltimateReactiveArchitectureActivity : AppCompatActivity() {
         setupBindings()
     }
 
-    private fun save() {
-        viewModel?.save(edit_text.text.toString())
-    }
-
-    private fun clear() {
-        viewModel?.clear()
-    }
-
     private fun setupBindings() {
-        btn_save.clicks().subscribe { save() }.addToBag()
-        btn_clear.clicks().subscribe { clear() }.addToBag()
+        btn_save.clicks().subscribe {
+            viewModel?.save(edit_text.text.toString())
+        }.addToBag()
+
+        btn_clear.clicks().subscribe {
+            viewModel?.clear()
+        }.addToBag()
 
         viewModel?.textSubject?.subscribe { text ->
             edit_text.setText(text)
@@ -43,10 +40,13 @@ class UltimateReactiveArchitectureActivity : AppCompatActivity() {
 
         viewModel?.isTextSetSignal?.subscribe {
             if (it) hideKeyboard()
-            btn_clear.visibility = if (it) View.VISIBLE else View.GONE
-            text_view.visibility = if (it) View.VISIBLE else View.GONE
-            btn_save.visibility = if (it) View.GONE else View.VISIBLE
-            edit_text.visibility = if (it) View.GONE else View.VISIBLE
+            btn_clear.hideShow { it }
+            text_view.hideShow { it }
+        }?.addToBag()
+
+        viewModel?.isTextSetSignal?.map { !it }?.subscribe {
+            btn_save.hideShow { it }
+            edit_text.hideShow { it }
         }?.addToBag()
     }
 
@@ -55,7 +55,11 @@ class UltimateReactiveArchitectureActivity : AppCompatActivity() {
         disposableBag.dispose()
     }
 
-    fun Disposable.addToBag() {
+    private fun View.hideShow(shouldShow: () -> Boolean) {
+        visibility = if (shouldShow()) View.VISIBLE else View.GONE
+    }
+
+    private fun Disposable.addToBag() {
         disposableBag.add(this)
     }
 }
