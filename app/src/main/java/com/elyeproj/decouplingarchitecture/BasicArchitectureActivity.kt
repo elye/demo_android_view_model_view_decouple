@@ -1,9 +1,7 @@
 package com.elyeproj.decouplingarchitecture
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_architecture.*
@@ -41,6 +39,7 @@ class BasicArchitectureActivity : AppCompatActivity() {
 
     private fun enterViewModel(text: String) {
         hideKeyboard()
+        text_status.text = MainActivity.VIEW_MODE
         text_view.text = text
         MainActivity.persistedText = text
         btn_clear.visibility = View.VISIBLE
@@ -50,6 +49,7 @@ class BasicArchitectureActivity : AppCompatActivity() {
     }
 
     private fun enterEditMode() {
+        text_status.text = MainActivity.EDIT_MODE
         edit_text.setText(String())
         btn_clear.visibility = View.GONE
         text_view.visibility = View.GONE

@@ -36,6 +36,7 @@ class FunctionalArchitectureActivity : AppCompatActivity() {
 
     private fun enterViewMode(text: String) {
         hideKeyboard()
+        text_status.text = MainActivity.VIEW_MODE
         text_view.text = text
         btn_clear.visibility = View.VISIBLE
         text_view.visibility = View.VISIBLE
@@ -44,6 +45,7 @@ class FunctionalArchitectureActivity : AppCompatActivity() {
     }
 
     private fun enterEditMode() {
+        text_status.text = MainActivity.EDIT_MODE
         edit_text.setText(String())
         btn_clear.visibility = View.GONE
         text_view.visibility = View.GONE

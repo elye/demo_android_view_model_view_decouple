@@ -13,6 +13,8 @@ class MainActivity : AppCompatActivity() {
     companion object {
         var persistedText: String = String()
         lateinit var globalContext: Context
+        const val EDIT_MODE = "Edit Mode"
+        const val VIEW_MODE = "View Mode"
 
         fun isGlobalContextInitialized() = ::globalContext.isInitialized
     }

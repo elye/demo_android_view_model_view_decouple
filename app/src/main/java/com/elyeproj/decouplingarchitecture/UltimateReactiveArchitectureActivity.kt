@@ -40,6 +40,7 @@ class UltimateReactiveArchitectureActivity : AppCompatActivity() {
 
         viewModel?.isTextSetSignal?.subscribe {
             if (it) hideKeyboard()
+            text_status.text = if (it) MainActivity.VIEW_MODE else MainActivity.EDIT_MODE
             btn_clear.hideShow { it }
             text_view.hideShow { it }
         }?.addToBag()
