@@ -38,16 +38,28 @@ class UltimateReactiveArchitectureActivity : AppCompatActivity() {
             text_view.text = text
         }?.addToBag()
 
-        viewModel?.isTextSetSignal?.subscribe {
-            if (it) hideKeyboard()
-            text_status.text = if (it) MainActivity.VIEW_MODE else MainActivity.EDIT_MODE
-            btn_clear.hideShow { it }
-            text_view.hideShow { it }
+        viewModel?.modeTextSignal?.subscribe {
+            text_status.text = it
         }?.addToBag()
 
-        viewModel?.isTextSetSignal?.map { !it }?.subscribe {
-            btn_save.hideShow { it }
-            edit_text.hideShow { it }
+        viewModel?.hideKeyboardSignal?.subscribe {
+            hideKeyboard()
+        }?.addToBag()
+
+        viewModel?.hideClearButton?.subscribe {
+            btn_clear.hideIt(it)
+        }?.addToBag()
+
+        viewModel?.hideTextField?.subscribe {
+            edit_text.hideIt(it)
+        }?.addToBag()
+
+        viewModel?.hideSaveButton?.subscribe {
+            btn_save.hideIt(it)
+        }?.addToBag()
+
+        viewModel?.hideTextLabel?.subscribe {
+            text_view.hideIt(it)
         }?.addToBag()
     }
 
@@ -56,8 +68,8 @@ class UltimateReactiveArchitectureActivity : AppCompatActivity() {
         disposableBag.dispose()
     }
 
-    private fun View.hideShow(shouldShow: () -> Boolean) {
-        visibility = if (shouldShow()) View.VISIBLE else View.GONE
+    private fun View.hideIt(shouldHide: Boolean) {
+        visibility = if (shouldHide) View.GONE else View.VISIBLE
     }
 
     private fun Disposable.addToBag() {

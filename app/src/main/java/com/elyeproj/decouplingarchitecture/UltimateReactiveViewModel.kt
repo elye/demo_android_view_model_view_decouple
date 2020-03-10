@@ -6,7 +6,13 @@ import io.reactivex.subjects.ReplaySubject
 class UltimateReactiveViewModel {
 
     val textSubject: ReplaySubject<String> = ReplaySubject.create()
-    val isTextSetSignal: Observable<Boolean> = textSubject.map { it.isNotEmpty() }
+    private val isTextSetSignal: Observable<Boolean> = textSubject.map { it.isNotEmpty() }
+    val hideTextField: Observable<Boolean> = isTextSetSignal
+    val hideSaveButton: Observable<Boolean> = isTextSetSignal
+    val hideTextLabel: Observable<Boolean> = isTextSetSignal.map { !it }
+    val hideClearButton: Observable<Boolean> = isTextSetSignal.map { !it }
+    val hideKeyboardSignal: Observable<Unit> = isTextSetSignal.filter{ it }.map {  }
+    val modeTextSignal: Observable<String> = isTextSetSignal.map { editModeText(it) }
 
     init {
         textSubject.onNext(MainActivity.persistedText)
@@ -21,5 +27,13 @@ class UltimateReactiveViewModel {
     fun clear() {
         MainActivity.persistedText = String()
         textSubject.onNext(String())
+    }
+
+    private fun editModeText(isTextSet: Boolean) : String {
+        return if (isTextSet) {
+            MainActivity.VIEW_MODE
+        } else {
+            MainActivity.EDIT_MODE
+        }
     }
 }
