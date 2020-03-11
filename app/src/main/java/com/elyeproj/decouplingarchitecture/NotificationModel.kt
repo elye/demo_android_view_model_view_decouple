@@ -10,7 +10,7 @@ class NotificationModel private constructor() {
         val sharedInstance = NotificationModel()
     }
 
-    var text: String? = null
+    var text: String? = MainActivity.persistedText
         set(value) {
             field = value
             MainActivity.persistedText = value ?: String()

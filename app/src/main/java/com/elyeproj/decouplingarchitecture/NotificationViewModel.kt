@@ -3,7 +3,7 @@ package com.elyeproj.decouplingarchitecture
 class NotificationViewModel {
 
     fun initialSetup() {
-        NotificationModel.sharedInstance.text = MainActivity.persistedText
+        NotificationModel.sharedInstance.text = NotificationModel.sharedInstance.text
     }
 
     fun save(text: String) {
